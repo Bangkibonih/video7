@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Putar & Unduh Video</title>
   <style>
     body {
@@ -17,10 +17,15 @@
       font-family: sans-serif;
     }
 
-    video {
+    #video-wrapper {
       width: 90%;
       max-width: 600px;
       margin-bottom: 20px;
+      position: relative;
+    }
+
+    video {
+      width: 100%;
     }
 
     .btn-unduh {
@@ -34,21 +39,31 @@
       cursor: pointer;
     }
   </style>
+</head>
+<body>
+
+  <div id="video-wrapper">
+    <video controls>
+      <source src="https://cdn.pixeldrain.com/u/XMFF7a6R.mp4" type="video/mp4">
+      Browser Anda tidak mendukung pemutar video.
+    </video>
+  </div>
+
+  <a class="btn-unduh" href="https://s.shopee.co.id/4VRO1Q7Jat" target="_blank">Unduh Sekarang</a>
 
   <!-- Iklan Popunder -->
   <script async src="https://js.wpadmngr.com/static/adManager.js" data-admpid="344543"></script>
 
-  <!-- Iklan Open Roll -->
-  <script async src="https://js.wpadmngr.com/static/adManager.js" data-admpid="344535"></script>
-</head>
-<body>
-
-  <video controls>
-    <source src="https://cdn.pixeldrain.com/u/XMFF7a6R.mp4" type="video/mp4">
-    Browser Anda tidak mendukung pemutar video.
-  </video>
-
-  <a class="btn-unduh" href="https://s.shopee.co.id/4VRO1Q7Jat" target="_blank">Unduh Sekarang</a>
+  <!-- Open Roll DI-DELAY 1.5 DETIK -->
+  <script>
+    setTimeout(() => {
+      const script = document.createElement('script');
+      script.src = "https://js.wpadmngr.com/static/adManager.js";
+      script.async = true;
+      script.setAttribute("data-admpid", "344535");
+      document.body.appendChild(script);
+    }, 1500);
+  </script>
 
 </body>
 </html>
