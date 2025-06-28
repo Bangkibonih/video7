@@ -2,68 +2,58 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Putar & Unduh Video</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nonton Video</title>
   <style>
     body {
-      background-color: #000;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
       margin: 0;
-      font-family: sans-serif;
+      background: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
     }
-
-    #video-wrapper {
-      width: 90%;
-      max-width: 600px;
-      margin-bottom: 20px;
-      position: relative;
+    .video-container {
+      max-width: 800px;
+      margin: 30px auto;
     }
-
     video {
       width: 100%;
+      height: auto;
+      border-radius: 12px;
     }
-
-    .btn-unduh {
-      background-color: orange;
+    .download-button {
+      margin-top: 20px;
+    }
+    .download-button a {
+      display: inline-block;
+      background: #ff5722;
       color: white;
-      border: none;
-      padding: 15px 25px;
-      font-size: 16px;
-      border-radius: 10px;
+      padding: 12px 24px;
       text-decoration: none;
-      cursor: pointer;
+      font-weight: bold;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+    .download-button a:hover {
+      background: #e64a19;
     }
   </style>
+
+  <!-- Clikadilla Popunder -->
+  <script async src="https://js.wpadmngr.com/static/adManager.js" data-admpid="344543"></script>
 </head>
 <body>
 
-  <div id="video-wrapper">
+  <div class="video-container">
     <video controls>
-      <source src="https://cdn.pixeldrain.com/u/XMFF7a6R.mp4" type="video/mp4">
-      Browser Anda tidak mendukung pemutar video.
+      <source src="https://pixeldrain.com/api/file/XMFF7a6R" type="video/mp4">
+      Maaf, browser kamu tidak mendukung pemutar video.
     </video>
+
+    <div class="download-button">
+      <a href="https://s.shopee.co.id/4VRO1Q7Jat" target="_blank">Unduh Video</a>
+    </div>
   </div>
-
-  <a class="btn-unduh" href="https://s.shopee.co.id/4VRO1Q7Jat" target="_blank">Unduh Sekarang</a>
-
-  <!-- Iklan Popunder -->
-  <script async src="https://js.wpadmngr.com/static/adManager.js" data-admpid="344543"></script>
-
-  <!-- Open Roll DI-DELAY 1.5 DETIK -->
-  <script>
-    setTimeout(() => {
-      const script = document.createElement('script');
-      script.src = "https://js.wpadmngr.com/static/adManager.js";
-      script.async = true;
-      script.setAttribute("data-admpid", "344535");
-      document.body.appendChild(script);
-    }, 1500);
-  </script>
 
 </body>
 </html>
