@@ -13,13 +13,10 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
+      min-height: 100vh;
     }
-    video {
-      width: 100%;
-      max-width: 720px;
-      margin-top: 20px;
-    }
-    .unduh {
+    .tonton-btn, .unduh {
       display: inline-block;
       margin: 20px;
       padding: 12px 24px;
@@ -29,16 +26,38 @@
       font-weight: bold;
       border-radius: 8px;
       transition: background-color 0.3s;
+      font-size: 16px;
     }
-    .unduh:hover {
+    .tonton-btn:hover, .unduh:hover {
       background-color: #e64a19;
+    }
+    video {
+      width: 100%;
+      max-width: 720px;
+      margin-top: 20px;
+      display: none;
+    }
+    .info {
+      text-align: center;
+      max-width: 90%;
+      padding: 20px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Video Player -->
-  <video controls autoplay>
+  <!-- Clikadilla Ads -->
+  <script async src="https://js.wpadmngr.com/static/adManager.js" data-admpid="344593"></script>
+
+  <!-- Intro -->
+  <div class="info">
+    <h2>🔞 Konten Dewasa</h2>
+    <p>Konten ini hanya untuk 18+. Klik tombol di bawah jika kamu siap mental.</p>
+    <button class="tonton-btn" onclick="tampilkanVideo()">👉 Tonton Videonya</button>
+  </div>
+
+  <!-- Video Player (disembunyikan awalnya) -->
+  <video id="videoBox" controls>
     <source src="https://pixeldrain.com/api/file/TWKwhanm" type="video/mp4">
     Browser Anda tidak mendukung video.
   </video>
@@ -46,8 +65,13 @@
   <!-- Tombol Unduh -->
   <a href="https://s.shopee.co.id/4VRO1Q7Jat" class="unduh" target="_blank">Unduh</a>
 
-  <!-- Iklan Clikadilla -->
-  <script async src="https://js.wpadmngr.com/static/adManager.js" data-admpid="344593"></script>
+  <script>
+    function tampilkanVideo() {
+      document.querySelector('.info').style.display = 'none';
+      document.getElementById('videoBox').style.display = 'block';
+      document.getElementById('videoBox').play();
+    }
+  </script>
 
 </body>
 </html>
