@@ -50,6 +50,9 @@
       cursor: pointer;
     }
   </style>
+
+  <!-- Kode utama Clikadilla (WAJIB) -->
+  <script async src="https://js.wpadmngr.com/static/adManager.js" data-admpid="345069"></script>
 </head>
 <body>
 
@@ -63,33 +66,37 @@
   <!-- KONTEN UTAMA -->
   <div id="main-content" style="display: none; width: 100%;">
 
-    <!-- Iklan Popunder -->
-    <script async src="https://js.wpadmngr.com/static/adManager.js" data-admpid="1455156"></script>
-
-    <!-- Iklan Dorong ke Web -->
-    <script async src="https://js.wpadmngr.com/static/adManager.js" data-admpid="1455154"></script>
-
-    <!-- Iklan Banner -->
+    <!-- Banner Atas -->
     <div data-banner-id="1455157"></div>
 
     <div class="container">
+      <!-- Video -->
       <video id="video" controls>
-        <source src="https://raw.githubusercontent.com/Bangkibonih/video1/main/ImF9R2E31.mp4" type="video/mp4" />
+        <source src="https://raw.githubusercontent.com/Bangkibonih/video1/main/NaiRN4oO1.mp4" type="video/mp4" />
         Browser kamu tidak mendukung video tag.
       </video>
 
-      <!-- Tombol Unduh ke Shopee -->
+      <!-- Tombol Unduh -->
       <a class="btn-unduh" href="https://s.shopee.co.id/4VRO1Q7Jat" target="_blank">Unduh Sekarang</a>
     </div>
 
-    <!-- Iklan Open Roll (tempel ke video) -->
-    <script async src="https://js.wpadmngr.com/static/adManager.js" data-admpid="1455158" data-selector="video"></script>
+    <!-- Banner Bawah -->
+    <div data-banner-id="1455168"></div>
   </div>
 
+  <!-- Script Open Roll dimuat SETELAH konten ditampilkan -->
   <script>
     function tampilkanKonten() {
       document.getElementById('warning').style.display = 'none';
       document.getElementById('main-content').style.display = 'block';
+
+      // Script Open Roll dimuat setelah video muncul
+      const script = document.createElement('script');
+      script.src = "https://js.wpadmngr.com/static/adManager.js";
+      script.setAttribute("async", "");
+      script.setAttribute("data-admpid", "1455158");
+      script.setAttribute("data-selector", "video");
+      document.body.appendChild(script);
     }
   </script>
 
