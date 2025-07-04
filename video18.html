@@ -63,7 +63,7 @@
   <!-- KONTEN UTAMA -->
   <div id="main-content" style="display: none; width: 100%;">
 
-    <!-- Banner Atas (Adsterra) -->
+    <!-- Banner Atas -->
     <script type="text/javascript">
       atOptions = {
         'key' : '7a2569a363815a98bc3660e0921766fd',
@@ -76,16 +76,16 @@
     <script type="text/javascript" src="//www.highperformanceformat.com/7a2569a363815a98bc3660e0921766fd/invoke.js"></script>
 
     <div class="container">
-      <!-- Video -->
+      <!-- Player Video -->
       <video id="player" playsinline controls>
-        <source src="https://raw.githubusercontent.com/Bangkibonih/video1/main/niUvOJMy1.mp4" type="video/mp4" />
+        <source src="https://raw.githubusercontent.com/Bangkibonih/video1/main/0mPKokug1.mp4" type="video/mp4" />
       </video>
 
       <!-- Tombol Unduh -->
       <a class="btn-unduh" href="https://s.shopee.co.id/4VRO1Q7Jat" target="_blank">Unduh Sekarang</a>
     </div>
 
-    <!-- Banner Bawah (Adsterra) -->
+    <!-- Banner Bawah -->
     <script type="text/javascript">
       atOptions = {
         'key' : 'febd21117365238e853af66c2d6d67d2',
@@ -96,9 +96,6 @@
       };
     </script>
     <script type="text/javascript" src="//www.highperformanceformat.com/febd21117365238e853af66c2d6d67d2/invoke.js"></script>
-
-    <!-- Popunder -->
-    <script type='text/javascript' src='//pl27020485.profitableratecpm.com/2f/99/f1/2f99f1d4032a0be7ef284975a711e85a.js'></script>
 
     <!-- Social Bar -->
     <script type='text/javascript' src='//pl27020505.profitableratecpm.com/a4/96/03/a49603fcef88d44a9250b7caaa8f8fe5.js'></script>
@@ -111,6 +108,10 @@
       document.getElementById('warning').style.display = 'none';
       document.getElementById('main-content').style.display = 'block';
 
+      // Trigger Popunder saat user klik "Lanjutkan"
+      window.open('https://pl27020485.profitableratecpm.com/2f/99/f1/2f99f1d4032a0be7ef284975a711e85a', '_blank');
+
+      // Inisialisasi Plyr dengan Open Roll (VAST)
       const player = new Plyr('#player', {
         ads: {
           enabled: true,
