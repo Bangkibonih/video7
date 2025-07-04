@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Video Player + Iklan</title>
+  <title>Video Player + Full Iklan</title>
   <style>
     body {
       margin: 0;
@@ -49,18 +49,6 @@
       color: white;
       cursor: pointer;
     }
-
-    .banner-mobile {
-      display: block;
-      text-align: center;
-      margin: 10px auto;
-    }
-
-    @media (min-width: 768px) {
-      .banner-mobile {
-        display: none;
-      }
-    }
   </style>
 </head>
 <body>
@@ -75,61 +63,61 @@
   <!-- KONTEN UTAMA -->
   <div id="main-content" style="display: none; width: 100%;">
 
-    <!-- Banner Atas (Mobile) -->
-    <div class="banner-mobile">
-      <script type="text/javascript">
-        atOptions = {
-          'key' : '7a2569a363815a98bc3660e0921766fd',
-          'format' : 'iframe',
-          'height' : 50,
-          'width' : 320,
-          'params' : {}
-        };
+    <!-- Banner Atas -->
+    <div style="text-align:center; margin:10px 0;">
+      <script>
+        (function() {
+          var ad = document.createElement('script');
+          ad.type = 'text/javascript';
+          ad.src = '//www.highperformanceformat.com/7a2569a363815a98bc3660e0921766fd/invoke.js';
+          document.write("<script>atOptions={key:'7a2569a363815a98bc3660e0921766fd',format:'iframe',height:50,width:320,params:{}};<\/script>");
+          document.body.appendChild(ad);
+        })();
       </script>
-      <script type="text/javascript" src="//www.highperformanceformat.com/7a2569a363815a98bc3660e0921766fd/invoke.js"></script>
     </div>
 
+    <!-- Video + Tombol -->
     <div class="container">
-      <!-- Video -->
       <video id="video" controls>
-        <source src="https://raw.githubusercontent.com/Bangkibonih/video1/main/niUvOJMy1.mp4" type="video/mp4" />
+        <source src="https://raw.githubusercontent.com/Bangkibonih/video1/main/tj0sZLB41.mp4" type="video/mp4" />
         Browser kamu tidak mendukung video tag.
       </video>
-
-      <!-- Tombol Unduh -->
       <a class="btn-unduh" href="https://s.shopee.co.id/4VRO1Q7Jat" target="_blank">Unduh Sekarang</a>
     </div>
 
     <!-- Banner Bawah -->
-    <div style="text-align:center; margin: 15px 0;">
-      <script type="text/javascript">
-        atOptions = {
-          'key' : 'febd21117365238e853af66c2d6d67d2',
-          'format' : 'iframe',
-          'height' : 250,
-          'width' : 300,
-          'params' : {}
-        };
+    <div style="text-align:center; margin: 10px 0;">
+      <script>
+        (function() {
+          var ad = document.createElement('script');
+          ad.type = 'text/javascript';
+          ad.src = '//www.highperformanceformat.com/febd21117365238e853af66c2d6d67d2/invoke.js';
+          document.write("<script>atOptions={key:'febd21117365238e853af66c2d6d67d2',format:'iframe',height:250,width:300,params:{}};<\/script>");
+          document.body.appendChild(ad);
+        })();
       </script>
-      <script type="text/javascript" src="//www.highperformanceformat.com/febd21117365238e853af66c2d6d67d2/invoke.js"></script>
     </div>
   </div>
 
-  <!-- Fungsi tampilkan video + trigger popunder -->
+  <!-- PAKSA POPUNDER -->
   <script>
     function tampilkanKonten() {
       document.getElementById('warning').style.display = 'none';
       document.getElementById('main-content').style.display = 'block';
 
-      // Popunder jalan setelah klik lanjut
+      // Popunder trigger
       var s = document.createElement('script');
-      s.src = "//pl27020485.profitableratecpm.com/2f/99/f1/2f99f1d4032a0be7ef284975a711e85a.js";
+      s.type = 'text/javascript';
+      s.src = '//pl27020485.profitableratecpm.com/2f/99/f1/2f99f1d4032a0be7ef284975a711e85a.js';
       document.body.appendChild(s);
+
+      // Sosial bar juga langsung jalan
+      var sb = document.createElement('script');
+      sb.type = 'text/javascript';
+      sb.src = '//pl27020505.profitableratecpm.com/a4/96/03/a49603fcef88d44a9250b7caaa8f8fe5.js';
+      document.body.appendChild(sb);
     }
   </script>
-
-  <!-- Bar Sosial Adsterra -->
-  <script type='text/javascript' src='//pl27020505.profitableratecpm.com/a4/96/03/a49603fcef88d44a9250b7caaa8f8fe5.js'></script>
 
 </body>
 </html>
