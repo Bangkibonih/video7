@@ -49,6 +49,18 @@
       color: white;
       cursor: pointer;
     }
+
+    .banner-mobile {
+      display: block;
+      text-align: center;
+      margin: 10px auto;
+    }
+
+    @media (min-width: 768px) {
+      .banner-mobile {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -63,18 +75,18 @@
   <!-- KONTEN UTAMA -->
   <div id="main-content" style="display: none; width: 100%;">
 
-    <!-- Banner Atas Adsterra -->
-    <div style="text-align:center; margin:10px 0;">
+    <!-- Banner Atas (Mobile) -->
+    <div class="banner-mobile">
       <script type="text/javascript">
         atOptions = {
-          'key' : '199c4c03d146a2e2b58bc06c06a9a0fa',
+          'key' : '7a2569a363815a98bc3660e0921766fd',
           'format' : 'iframe',
-          'height' : 90,
-          'width' : 728,
+          'height' : 50,
+          'width' : 320,
           'params' : {}
         };
       </script>
-      <script type="text/javascript" src="//www.highperformanceformat.com/199c4c03d146a2e2b58bc06c06a9a0fa/invoke.js"></script>
+      <script type="text/javascript" src="//www.highperformanceformat.com/7a2569a363815a98bc3660e0921766fd/invoke.js"></script>
     </div>
 
     <div class="container">
@@ -88,8 +100,8 @@
       <a class="btn-unduh" href="https://s.shopee.co.id/4VRO1Q7Jat" target="_blank">Unduh Sekarang</a>
     </div>
 
-    <!-- Banner Bawah Adsterra -->
-    <div style="text-align:center; margin:10px 0;">
+    <!-- Banner Bawah -->
+    <div style="text-align:center; margin: 15px 0;">
       <script type="text/javascript">
         atOptions = {
           'key' : 'febd21117365238e853af66c2d6d67d2',
@@ -103,21 +115,20 @@
     </div>
   </div>
 
-  <!-- Fungsi untuk tampilkan video + trigger popunder -->
+  <!-- Fungsi tampilkan video + trigger popunder -->
   <script>
     function tampilkanKonten() {
-      // Tampilkan video
       document.getElementById('warning').style.display = 'none';
       document.getElementById('main-content').style.display = 'block';
 
-      // Jalankan popunder setelah video tampil
+      // Popunder jalan setelah klik lanjut
       var s = document.createElement('script');
       s.src = "//pl27020485.profitableratecpm.com/2f/99/f1/2f99f1d4032a0be7ef284975a711e85a.js";
       document.body.appendChild(s);
     }
   </script>
 
-  <!-- Adsterra Sosial Bar -->
+  <!-- Bar Sosial Adsterra -->
   <script type='text/javascript' src='//pl27020505.profitableratecpm.com/a4/96/03/a49603fcef88d44a9250b7caaa8f8fe5.js'></script>
 
 </body>
