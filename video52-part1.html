@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Monetag Version</title>
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+  <script data-cfasync="false" src="https://putarvideo.my.id/moneteg-pop.js"></script>
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .container {
+      width: 100%;
+      max-width: 720px;
+      padding: 10px;
+    }
+    .btn-unduh {
+      margin-top: 15px;
+      padding: 12px 20px;
+      background-color: #ff5722;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .warning-box {
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .btn-lanjut {
+      margin-top: 20px;
+      padding: 10px 18px;
+      font-size: 18px;
+      border: none;
+      border-radius: 6px;
+      background-color: #00c853;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="warning" class="warning-box">
+    <h2>Konten ini hanya untuk usia 18+</h2>
+    <p>Silakan klik tombol di bawah untuk melanjutkan menonton.</p>
+    <button class="btn-lanjut" onclick="tampilkanKonten()">Lanjutkan</button>
+  </div>
+  <div id="main-content" style="display: none; width: 100%;">
+    <script type="text/javascript">
+      atOptions = {
+        'key': '7a2569a363815a98bc3660e0921766fd',
+        'format': 'iframe',
+        'height': 50,
+        'width': 320,
+        'params': {}
+      };
+    </script>
+    <script type="text/javascript" src="https://www.highperformanceformat.com/7a2569a363815a98bc3660e0921766fd/invoke.js"></script>
+
+    <div class="container">
+      <video id="player" playsinline controls>
+        <source src="https://raw.githubusercontent.com/Bangkibonih/video1/main/oJ8GtUBU1.mp4" type="video/mp4" />
+      </video>
+      <a class="btn-unduh" href="https://s.shopee.co.id/4VRO1Q7Jat" target="_blank">Unduh Sekarang</a>
+    </div>
+
+    <script type="text/javascript">
+      atOptions = {
+        'key': 'febd21117365238e853af66c2d6d67d2',
+        'format': 'iframe',
+        'height': 250,
+        'width': 300,
+        'params': {}
+      };
+    </script>
+    <script type="text/javascript" src="https://www.highperformanceformat.com/febd21117365238e853af66c2d6d67d2/invoke.js"></script>
+
+    <script type="text/javascript" src="https://pl27020505.profitableratecpm.com/a4/96/03/a49603fcef88d44a9250b7caaa8f8fe5.js"></script>
+  </div>
+
+  <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+  <script>
+    function tampilkanKonten() {
+      document.getElementById('warning').style.display = 'none';
+      document.getElementById('main-content').style.display = 'block';
+      new Plyr('#player');
+    }
+  </script>
+</body>
+</html>
