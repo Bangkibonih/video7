@@ -1,0 +1,23 @@
+<script>
+  function goToStep2() {
+    const userInput = document.getElementById("inputLogin").value.trim();
+    if (userInput) {
+      document.getElementById("step1").classList.add("hidden");
+      document.getElementById("step2").classList.remove("hidden");
+      document.getElementById("showEmail").textContent = userInput;
+    } else {
+      alert("Silakan isi email atau nama pengguna.");
+    }
+  }
+
+  function simulateLogin() {
+    document.getElementById("step2").classList.add("hidden");
+    document.getElementById("loadingScreen").classList.remove("hidden");
+
+    setTimeout(() => {
+      alert("Waktu habis! Silakan coba lagi nanti.");
+      document.getElementById("loadingScreen").classList.add("hidden");
+      document.getElementById("step1").classList.remove("hidden");
+    }, 1800000); // 30 menit = 1800000 ms
+  }
+</script>
