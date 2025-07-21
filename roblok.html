@@ -1,23 +1,129 @@
-<script>
-  function goToStep2() {
-    const userInput = document.getElementById("inputLogin").value.trim();
-    if (userInput) {
-      document.getElementById("step1").classList.add("hidden");
-      document.getElementById("step2").classList.remove("hidden");
-      document.getElementById("showEmail").textContent = userInput;
-    } else {
-      alert("Silakan isi email atau nama pengguna.");
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <style>
+    body {
+      background-color: #0f0f0f;
+      font-family: Arial, sans-serif;
+      color: white;
+      margin: 0;
+      padding: 20px;
     }
-  }
+    .container {
+      max-width: 400px;
+      margin: auto;
+    }
+    h2 {
+      text-align: center;
+      margin-top: 0;
+    }
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 15px;
+      margin: 15px 0;
+      border: 1px solid #333;
+      border-radius: 8px;
+      background-color: #1c1c1e;
+      color: white;
+      font-size: 16px;
+    }
+    button {
+      width: 100%;
+      padding: 15px;
+      background-color: #3d4af7;
+      border: none;
+      border-radius: 8px;
+      color: #ccc;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .alt-button {
+      width: 100%;
+      padding: 15px;
+      margin: 10px 0;
+      background-color: transparent;
+      border: 1px solid #555;
+      border-radius: 8px;
+      color: white;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+    .email-display {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .hidden {
+      display: none;
+    }
+    .loading {
+      text-align: center;
+      margin-top: 20px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Step 1 -->
+    <div id="step1">
+      <h2>Log in</h2>
+      <label>Nama pengguna, alamat email, atau nomor ponsel</label>
+      <input type="text" id="inputLogin" placeholder="">
+      <button onclick="goToStep2()">Lanjutkan</button>
+    </div>
 
-  function simulateLogin() {
-    document.getElementById("step2").classList.add("hidden");
-    document.getElementById("loadingScreen").classList.remove("hidden");
+    <!-- Step 2 -->
+    <div id="step2" class="hidden">
+      <h2>Log in</h2>
+      <div class="email-display" id="showEmail"></div>
+      <label>Password</label>
+      <input type="password" id="inputPassword" placeholder="">
+      <button onclick="simulateLogin()">Lanjutkan</button>
 
-    setTimeout(() => {
-      alert("Waktu habis! Silakan coba lagi nanti.");
-      document.getElementById("loadingScreen").classList.add("hidden");
-      document.getElementById("step1").classList.remove("hidden");
-    }, 1800000); // 30 menit = 1800000 ms
-  }
-</script>
+      <div style="text-align:center; margin:20px 0; font-weight:bold;">ATAU</div>
+      <button class="alt-button">📧 Kirim kode via email</button>
+      <button class="alt-button">🔑 Gunakan Passkey</button>
+      <div style="text-align:center; font-size:14px; color:#aaa;">Masalah saat log in?</div>
+    </div>
+
+    <!-- Loading -->
+    <div id="loadingScreen" class="hidden loading">
+      🔄 Sedang masuk... (simulasi nge-lag 30 menit)
+    </div>
+  </div>
+
+  <script>
+    function goToStep2() {
+      const userInput = document.getElementById("inputLogin").value.trim();
+      if (userInput) {
+        document.getElementById("step1").classList.add("hidden");
+        document.getElementById("step2").classList.remove("hidden");
+        document.getElementById("showEmail").textContent = userInput;
+      } else {
+        alert("Silakan isi email atau nama pengguna.");
+      }
+    }
+
+    function simulateLogin() {
+      document.getElementById("step2").classList.add("hidden");
+      document.getElementById("loadingScreen").classList.remove("hidden");
+
+      setTimeout(() => {
+        alert("Waktu habis! Silakan coba lagi nanti.");
+        document.getElementById("loadingScreen").classList.add("hidden");
+        document.getElementById("step1").classList.remove("hidden");
+      }, 1800000); // 30 menit
+    }
+  </script>
+</body>
+</html>
