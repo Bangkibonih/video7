@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Video Viral - Nonton & Unduh</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #000;
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 12px;
+    }
+    .container { width: 100%; max-width: 720px; }
+    .ad-box {
+      width: 100%;
+      min-height: 60px;
+      margin: 10px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #111;
+      border: 1px dashed #333;
+      border-radius: 6px;
+      color: #666;
+      font-size: 12px;
+      overflow: hidden;
+    }
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      background: #0a0a0a;
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 12px 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+    video { width: 100%; height: auto; display: block; }
+    .btn-unduh {
+      display: block;
+      width: 100%;
+      margin: 16px 0;
+      padding: 15px;
+      background: linear-gradient(135deg, #ff5722, #e64a19);
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.15s;
+    }
+    .btn-unduh:active { transform: scale(0.98); }
+    .loading {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      color: #888;
+      font-size: 14px;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= ADSTERRA BANNER ATAS ================= -->
+  <div class="ad-box">
+    <script type="text/javascript">
+      atOptions = {
+        'key': '7a2569a363815a98bc3660e0921766fd',
+        'format': 'iframe',
+        'height': 50,
+        'width': 320,
+        'params': {}
+      };
+    </script>
+    <script type="text/javascript" src="//www.highperformanceformat.com/7a2569a363815a98bc3660e0921766fd/invoke.js"></script>
+  </div>
+
+  <div class="container">
+    
+    <!-- ================= VIDEO PLAYER ================= -->
+    <div class="video-wrapper">
+      <div class="loading" id="loading">⏳ Memuat video...</div>
+      <video id="mainVideo" controls playsinline preload="metadata" poster="https://via.placeholder.com/720x405/111/fff?text=Loading...">
+        <!-- ⚠️ GANTI URL INI KE BUNNY.NET / R2 / VPS (JANGAN GITHUB RAW) -->
+        <source src="https://storage.bunnycdn.com/videyy/sstik.io_@manusilangittt_1775958555230.mp4" type="video/mp4" />
+        Browser Anda tidak mendukung tag video.
+      </video>
+    </div>
+
+    <!-- ================= TOMBOL UNDUH (DIRECT LINK) ================= -->
+    <a class="btn-unduh" href="https://otieu.com/4/9810401" target="_blank" rel="noopener noreferrer">
+      ⬇️ Unduh Sekarang
+    </a>
+
+    <!-- ================= ADSTERRA BANNER BAWAH ================= -->
+    <div class="ad-box">
+      <script type="text/javascript">
+        atOptions = {
+          'key': 'febd21117365238e853af66c2d6d67d2',
+          'format': 'iframe',
+          'height': 250,
+          'width': 300,
+          'params': {}
+        };
+      </script>
+      <script type="text/javascript" src="//www.highperformanceformat.com/febd21117365238e853af66c2d6d67d2/invoke.js"></script>
+    </div>
+
+  </div>
+
+  <!-- ================= ADSTERRA SOCIAL BAR ================= -->
+  <script type="text/javascript">
+    atOptions = {
+      'key': 'a49603fcef88d44a9250b7caaa8f8fe5',
+      'format': 'script',
+      'script': 'socialbar'
+    };
+  </script>
+  <script type="text/javascript" src="//pl27020505.profitableratecpm.com/a4/96/03/a49603fcef88d44a9250b7caaa8f8fe5.js"></script>
+
+  <!-- ================= MONETAG POPUNDER (PASTE DI SINI) ================= -->
+  <script data-cfasync="false" type="text/javascript">
+    // 👇 TEMPEL SELURUH SCRIPT MONETAG OBFUSCATED LU DI BAWAH INI 👇
+    // Pastikan tidak ada tag <script> duplikat, cukup tempel isi fungsinya saja
+    
+    // (()=>{var K='ChmaorrCfozd... [SELURUH SCRIPT PANJANG LU] ...})();
+    
+    // 👆 JANGAN LUPA HAPUS KOMENTAR INI SETELAH PASTE 👆
+  </script>
+  <script src="//madurird.com/tag.min.js" data-zone="9562620" data-cfasync="false" async></script>
+
+  <!-- ================= LOGIKA PLAYER & IKLAN ================= -->
+  <script>
+    const video = document.getElementById('mainVideo');
+    const loading = document.getElementById('loading');
+
+    // Hilangkan loading saat metadata video siap
+    video.addEventListener('loadedmetadata', () => {
+      loading.style.display = 'none';
+    });
+
+    // Trigger popunder HANYA 1x per session (hindari banned & UX hancur)
+    video.addEventListener('play', function() {
+      if (!sessionStorage.getItem('popFired')) {
+        sessionStorage.setItem('popFired', 'true');
+        
+        // Jika script Monetag lu expose fungsi global, panggil di sini:
+        if (typeof _aayekbe === 'function') {
+          try { _aayekbe(); } catch(e) {}
+        }
+        // Jika pakai redirect langsung:
+        // window.open('LINK_DIRECT_POPUNDER_MONETAG', '_blank', 'noopener');
+      }
+    }, { once: true });
+
+    // Fallback jika video gagal load
+    video.addEventListener('error', () => {
+      loading.textContent = '❌ Video gagal dimuat. Coba refresh atau ganti jaringan.';
+      loading.style.color = '#ff6b6b';
+    });
+  </script>
+
+</body>
+</html>
