@@ -3,14 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Monetag Multitag -->
+<script src="https://quge5.com/88/tag.min.js" data-zone="167930" async data-cfasync="false"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000;color:#fff;font-family:sans-serif;padding:10px}
+.wrap{max-width:720px;margin:0 auto}
+.vid{position:relative;width:100%;background:#111;border-radius:10px;margin:10px 0;overflow:hidden}
+video{width:100%;display:block}
+.btn{display:block;width:100%;padding:14px;background:#ff5722;color:#fff;text-align:center;text-decoration:none;font-weight:bold;margin:10px 0;border-radius:6px}
+.back{color:#3ea6ff;text-decoration:none;font-size:14px}
+</style>
 </head>
-<body style="background:#000;color:#fff;padding:10px">
-  <a href="index.html" style="color:#3ea6ff">← Kembali</a>
-  <video controls autoplay style="width:100%;max-width:720px;background:#111;margin:10px 0">
-    <source src="https://putarvideo.b-cdn.net/ssstik.io_%40manusilangittt_1775958555230.mp4" type="video/mp4">
-  </video>
-  <a href="https://omg10.com/4/9810401" style="display:block;width:100%;padding:14px;background:#ff5722;color:#fff;text-align:center;text-decoration:none;font-weight:bold;border-radius:6px" target="_blank">⬇️ Unduh Sekarang</a>
+<body>
+<div class="wrap">
+  <a href="index.html" class="back">← Kembali</a>
   
-  <script src="https://quge5.com/88/tag.min.js" data-zone="167930" async data-cfasync="false"></script>
+  <div class="vid">
+    <video id="v" controls playsinline preload="metadata">
+      <source src="https://putarvideo.b-cdn.net/ssstik.io_%40manusilangittt_1775958555230.mp4" type="video/mp4">
+    </video>
+  </div>
+  
+  <a href="https://omg10.com/4/9810401" class="btn" target="_blank">⬇️ Unduh Sekarang</a>
+</div>
+
+<script>
+// Trigger popunder saat video diputar (1x per sesi)
+document.getElementById('v').addEventListener('play', function(){
+  if(!sessionStorage.getItem('pf')){
+    sessionStorage.setItem('pf','1');
+    if(typeof _aayekbe==='function'){
+      try{_aayekbe();}catch(e){}
+    }
+  }
+}, {once:true});
+</script>
 </body>
 </html>
