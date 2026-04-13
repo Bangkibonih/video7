@@ -38,19 +38,14 @@
       height: auto;
     }
   </style>
-
-  <!-- 1. IN-PAGE PUSH (BANNER ATAS) -->
-  <script>(function(s){s.dataset.zone='9810395',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-
-  <!-- 2. POPUNDER -->
-  <script>(function(s){s.dataset.zone='9569843',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-
-  <!-- 3. PUSH NOTIFICATIONS -->
-  <script src="https://5gvci.com/act/files/tag.min.js?z=9810378" data-cfasync="false" async></script>
 </head>
 <body>
 
-  <!-- BANNER ATAS (In-Page Push akan muncul di sini otomatis) -->
+  <!-- SEMUA SCRIPT MONETAG DI SINI (AWAL BODY) -->
+  <script>(function(s){s.dataset.zone='9810395',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+  <script>(function(s){s.dataset.zone='9569843',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+  <script>(function(s){s.dataset.zone='9811736',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+  <script src="https://5gvci.com/act/files/tag.min.js?z=9810378" data-cfasync="false" async></script>
 
   <div class="container">
     <!-- Video -->
@@ -62,12 +57,8 @@
     <a class="btn-unduh" href="https://omg10.com/4/9810401" target="_blank" id="dl-btn">⬇️ Unduh Sekarang</a>
   </div>
 
-  <!-- 4. VIGNETTE BANNER (HANYA SATU DI BAWAH TOMBOL) -->
-  <script>(function(s){s.dataset.zone='9811736',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-
   <!-- LOGIC -->
   <script>
-    // Trigger Popunder saat video play
     document.getElementById('v').addEventListener('play',function(){
       if(!sessionStorage.getItem('pf')){
         sessionStorage.setItem('pf','1');
@@ -75,7 +66,6 @@
       }
     },{once:true});
 
-    // Trigger Push Notification saat klik download
     document.getElementById('dl-btn').addEventListener('click',function(){
       if(Notification.permission==='default'){
         Notification.requestPermission().then(function(p){
