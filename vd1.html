@@ -1,54 +1,86 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Video Player</title>
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#000;color:#fff;font-family:sans-serif;padding:10px;display:flex;flex-direction:column;align-items:center}
-.vid{width:100%;max-width:720px;background:#111;border-radius:10px;margin-bottom:10px;overflow:hidden}
-video{width:100%;display:block}
-.btn{display:block;width:100%;max-width:720px;padding:14px;background:#ff5722;color:#fff;text-align:center;text-decoration:none;font-weight:bold;margin:10px 0;border-radius:6px;cursor:pointer}
-</style>
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .container {
+      width: 100%;
+      max-width: 720px;
+      padding: 10px;
+    }
+    .btn-unduh {
+      margin-top: 15px;
+      padding: 12px 20px;
+      background-color: #ff5722;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+    }
+    video {
+      width: 100%;
+      height: auto;
+    }
+  </style>
 </head>
 <body>
 
-<!-- 1. VIDEO PLAYER -->
-<div class="vid">
-  <video id="v" controls playsinline preload="metadata">
-    <source src="https://putarvideo.b-cdn.net/VID-20260403-WA0012.mp4" type="video/mp4">
-  </video>
-</div>
+  <div class="container">
+    <!-- Video Player -->
+    <video controls playsinline>
+      <source src="https://putarvideo.b-cdn.net/VID-20260403-WA0012.mp4" type="video/mp4" />
+    </video>
 
-<!-- 2. TOMBOL DOWNLOAD -->
-<a href="https://omg10.com/4/9810401" class="btn" target="_blank" id="dl-btn">⬇️ Unduh Sekarang</a>
+    <!-- Tombol Unduh -->
+    <a class="btn-unduh" href="https://omg10.com/4/9810401" target="_blank" id="dl-btn">⬇️ Unduh Sekarang</a>
+  </div>
 
-<!-- 3. SCRIPT VIGNETTE (POSISI DI BAWAH TOMBOL SESUAI REQUEST) -->
-<script>(function(s){s.dataset.zone='9811736',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+  <!-- 1. VIGNETTE BANNER (CUMA DI BAWAH, GAK DI ATAS) -->
+  <script>(function(s){s.dataset.zone='9811736',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 
-<!-- 4. SCRIPT LAINNYA (In-Page, Popunder, Push) -->
-<script>(function(s){s.dataset.zone='9810395',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-<script>(function(s){s.dataset.zone='9569843',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-<script src="https://5gvci.com/act/files/tag.min.js?z=9810378" data-cfasync="false" async></script>
+  <!-- 2. IN-PAGE PUSH -->
+  <script>(function(s){s.dataset.zone='9810395',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 
-<!-- 5. LOGIC -->
-<script>
-// Trigger Popunder saat Play
-document.getElementById('v').addEventListener('play',function(){
-  if(!sessionStorage.getItem('pf')){
-    sessionStorage.setItem('pf','1');
-    if(typeof _aayekbe==='function'){try{_aayekbe();}catch(e){}}
-  }
-},{once:true});
+  <!-- 3. POPUNDER -->
+  <script>(function(s){s.dataset.zone='9569843',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 
-// Trigger Push Notif saat Klik Unduh
-document.getElementById('dl-btn').addEventListener('click',function(){
-  if(Notification.permission==='default'){
-    Notification.requestPermission().then(function(p){console.log('Status:',p);});
-  }
-});
-</script>
+  <!-- 4. PUSH NOTIFICATIONS -->
+  <script src="https://5gvci.com/act/files/tag.min.js?z=9810378" data-cfasync="false" async></script>
+
+  <!-- LOGIC -->
+  <script>
+    // Trigger Popunder saat Play Video
+    document.querySelector('video').addEventListener('play',function(){
+      if(!sessionStorage.getItem('pf')){
+        sessionStorage.setItem('pf','1');
+        if(typeof _aayekbe==='function'){try{_aayekbe();}catch(e){}}
+      }
+    },{once:true});
+
+    // Trigger Push Notification saat Klik Download
+    document.getElementById('dl-btn').addEventListener('click',function(){
+      if(Notification.permission==='default'){
+        Notification.requestPermission().then(function(p){console.log('Status:',p);});
+      }
+    });
+  </script>
 
 </body>
 </html>
