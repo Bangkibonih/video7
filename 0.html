@@ -1,18 +1,556 @@
+
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/lokerwa.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      LokerWA
-    </title>
-    <script type="module" crossorigin="" src="/assets/index-DGbrByNO.js">
-    </script>
-    <link rel="stylesheet" crossorigin="" href="/assets/index-4XLDpl6l.css" />
-  </head>
-  <body>
-    <div id="root">
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LokerWA Panel - Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            padding-bottom: 80px;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 20px;
+            color: #059669;
+        }
+
+        .logout-btn {
+            color: #6b7280;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+        }
+
+        /* Stats Cards */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            padding: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .stat-label.total { color: #059669; }
+        .stat-label.online { color: #059669; }
+        .stat-label.offline { color: #ef4444; }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 15px 20px;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #374151;
+            border: 2px solid #e5e7eb;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Search Bar */
+        .search-container {
+            padding: 0 20px 20px;
+        }
+
+        .search-box {
+            background: white;
+            border-radius: 12px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .search-box input {
+            border: none;
+            outline: none;
+            flex: 1;
+            font-size: 14px;
+            color: #374151;
+        }
+
+        .search-box i {
+            color: #9ca3af;
+        }
+
+        /* Filter Tabs */
+        .filter-tabs {
+            padding: 0 20px 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .tab {
+            padding: 8px 24px;
+            border-radius: 20px;
+            border: 2px solid #e5e7eb;
+            background: white;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .tab.active {
+            background: #d1fae5;
+            color: #059669;
+            border-color: #059669;
+        }
+
+        /* Device Card */
+        .device-list {
+            padding: 0 20px;
+        }
+
+        .device-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 15px;
+        }
+
+        .device-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .device-id {
+            font-size: 12px;
+            color: #6b7280;
+            margin-bottom: 3px;
+        }
+
+        .device-name {
+            font-weight: 700;
+            color: #1f2937;
+            font-size: 16px;
+        }
+
+        .status-badge {
+            background: #d1fae5;
+            color: #059669;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .status-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #059669;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .wa-number {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 15px;
+        }
+
+        .device-stats {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .device-stat {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            border-radius: 8px;
+            background: #f9fafb;
+            font-size: 14px;
+        }
+
+        .device-stat.delivered {
+            background: #d1fae5;
+            color: #059669;
+        }
+
+        .device-stat.profit {
+            background: #fef3c7;
+            color: #d97706;
+            font-weight: 600;
+        }
+
+        .device-mode {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #f3f4f6;
+        }
+
+        .mode-label {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .mode-value {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .logout-icon {
+            width: 35px;
+            height: 35px;
+            background: #fee2e2;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ef4444;
+            cursor: pointer;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .pagination button {
+            background: none;
+            border: none;
+            color: #059669;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        /* Floating Action Button */
+        .fab {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 5px 20px rgba(5, 150, 105, 0.4);
+            cursor: pointer;
+            z-index: 99;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+            z-index: 100;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 12px;
+            padding: 5px 15px;
+            transition: all 0.3s;
+        }
+
+        .nav-item.active {
+            color: #059669;
+        }
+
+        .nav-item i {
+            font-size: 20px;
+        }
+
+        .nav-item.wallet {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 15px;
+            margin-top: -20px;
+            box-shadow: 0 5px 15px rgba(5, 150, 105, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">
+            <i class="fas fa-whatsapp"></i>
+            LokerWA <span style="color: #6b7280; font-weight: 400;">Panel</span>
+        </div>
+        <a href="#" class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i>
+            Logout
+        </a>
     </div>
-  </body>
+
+    <!-- Stats -->
+    <div class="stats-container">
+        <div class="stat-card">
+            <div class="stat-label total">
+                TOTAL <i class="fas fa-desktop"></i>
+            </div>
+            <div class="stat-value">1</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label online">
+                ONLINE <i class="fas fa-wifi"></i>
+            </div>
+            <div class="stat-value">1</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label offline">
+                OFFLINE <i class="fas fa-wifi" style="transform: rotate(45deg);"></i>
+            </div>
+            <div class="stat-value">0</div>
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+        <button class="btn btn-primary">
+            <i class="fas fa-qrcode"></i>
+            Scan QR
+        </button>
+        <button class="btn btn-secondary">
+            <i class="fas fa-link"></i>
+            Pairing Code
+        </button>
+    </div>
+
+    <!-- Search -->
+    <div class="search-container">
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Cari Device ID / nomor WhatsApp...">
+        </div>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="filter-tabs">
+        <button class="tab active">Semua</button>
+        <button class="tab">Online</button>
+        <button class="tab">Offline</button>
+    </div>
+
+    <!-- Device List -->
+    <div class="device-list">
+        <div class="device-card">
+            <div class="device-header">
+                <div>
+                    <div class="device-id">DEVICE</div>
+                    <div class="device-name">dev_dadc817</div>
+                </div>
+                <div class="status-badge">CONNECTED</div>
+            </div>
+            
+            <div class="wa-number">No. WA +6281248411700</div>
+            
+            <div class="device-stats">
+                <div class="device-stat">
+                    <i class="fas fa-paper-plane"></i>
+                    Sent: <strong>3</strong>
+                </div>
+                <div class="device-stat delivered">
+                    <i class="fas fa-check-circle"></i>
+                    Delivered: <strong>3</strong>
+                </div>
+                <div class="device-stat profit">
+                    <i class="fas fa-coins"></i>
+                    Profit: <strong>1950</strong>
+                </div>
+            </div>
+            
+            <div class="device-mode">
+                <div>
+                    <div class="mode-label">MODE</div>
+                    <div class="mode-value">SLOW (20s)</div>
+                </div>
+                <div class="logout-icon">
+                    <i class="fas fa-sign-out-alt"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+        <button><i class="fas fa-chevron-left"></i> Prev</button>
+        <span>Page 1/1 (1 devices)</span>
+        <button>Next <i class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <!-- Floating Action Button -->
+    <div class="fab">
+        <i class="fas fa-paper-plane"></i>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <a href="#" class="nav-item">
+            <i class="fas fa-home"></i>
+            Dashboard
+        </a>
+        <a href="#" class="nav-item active">
+            <i class="fas fa-mobile-alt"></i>
+            Devices
+        </a>
+        <a href="#" class="nav-item wallet">
+            <i class="fas fa-wallet"></i>
+            Wallets
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-users"></i>
+            Referrals
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-user-cog"></i>
+            Profile
+        </a>
+    </div>
+
+    <script>
+        // Tab switching
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Bottom nav switching
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                if (!this.classList.contains('wallet')) {
+                    e.preventDefault();
+                    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+    </script>
+
+</body>
 </html>
