@@ -1,524 +1,86 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>LokerWA Panel</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Manager - Rezx AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-green: #00c896; /* Warna hijau mirip screenshot */
-            --bg-color: #f8f9fc;
-            --text-dark: #1f2937;
-            --text-gray: #9ca3af;
-            --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
-            --border-radius: 16px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            padding-bottom: 90px;
-            color: var(--text-dark);
-        }
-
-        /* Top Header */
-        .top-header {
-            background: white;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid #f3f4f6;
-        }
-
-        .brand {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--text-dark);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .brand span { color: var(--primary-green); }
-        .brand small { color: var(--text-gray); font-weight: 400; margin-left: 5px; font-size: 14px; }
-
-        .logout-link {
-            color: var(--text-gray);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            padding: 20px 20px 10px;
-        }
-
-        .stat-card {
-            background: white;
-            padding: 15px 10px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--card-shadow);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .stat-title {
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            margin-bottom: 5px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .stat-title.green { color: var(--primary-green); }
-        .stat-title.red { color: #ef4444; }
-
-        .stat-count { font-size: 24px; font-weight: 800; color: var(--text-dark); }
-
-        .stat-icon {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 18px;
-            opacity: 0.2;
-        }
-        
-        .stat-icon.green { color: var(--primary-green); }
-        .stat-icon.red { color: #ef4444; }
-
-        /* Main Buttons */
-        .action-row {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 12px;
-            padding: 15px 20px;
-        }
-
-        .btn-scan {
-            background: var(--primary-green);
-            color: white;
-            border: none;
-            padding: 14px;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 200, 150, 0.3);
-        }
-
-        .btn-pair {
-            background: white;
-            color: #4b5563;
-            border: 1px solid #e5e7eb;
-            padding: 14px;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            cursor: pointer;
-        }
-
-        /* Search */
-        .search-wrap {
-            padding: 0 20px 15px;
-        }
-
-        .search-box {
-            background: white;
-            border-radius: 12px;
-            padding: 12px 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: var(--card-shadow);
-        }
-
-        .search-box input {
-            border: none;
-            outline: none;
-            width: 100%;
-            font-size: 14px;
-            color: #374151;
-        }
-
-        .search-box input::placeholder { color: #9ca3af; }
-
-        /* Filter Pills */
-        .filters {
-            display: flex;
-            gap: 10px;
-            padding: 0 20px 20px;
-            overflow-x: auto;
-        }
-
-        .pill {
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-size: 13px;
-            font-weight: 600;
-            border: 1px solid #e5e7eb;
-            background: white;
-            color: #6b7280;
-            cursor: pointer;
-            white-space: nowrap;
-        }
-
-        .pill.active {
-            background: #ecfdf5;
-            color: var(--primary-green);
-            border-color: var(--primary-green);
-        }
-
-        /* Device Card */
-        .device-card {
-            background: white;
-            margin: 0 20px 20px;
-            padding: 20px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--card-shadow);
-        }
-
-        .card-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 10px;
-        }
-
-        .device-label { font-size: 12px; color: #9ca3af; font-weight: 500; }
-        .device-name { font-size: 16px; font-weight: 700; color: var(--text-dark); margin-top: 2px; }
-
-        .status-badge {
-            background: #ecfdf5;
-            color: var(--primary-green);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--primary-green);
-            border-radius: 50%;
-        }
-
-        .wa-number {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 15px;
-        }
-
-        .card-stats {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
-
-        .stat-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 13px;
-            color: #6b7280;
-        }
-
-        .stat-item i { font-size: 14px; }
-        
-        .stat-delivered {
-            background: #ecfdf5;
-            color: var(--primary-green);
-            padding: 6px 12px;
-            border-radius: 8px;
-            font-weight: 600;
-        }
-
-        .stat-profit {
-            margin-left: auto;
-            font-weight: 700;
-            color: var(--text-dark);
-        }
-
-        .card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 15px;
-            border-top: 1px solid #f3f4f6;
-        }
-
-        .mode-info .mode-label { font-size: 12px; color: #9ca3af; margin-bottom: 2px; }
-        .mode-info .mode-val { font-size: 14px; font-weight: 700; color: var(--text-dark); }
-
-        .btn-logout-dev {
-            width: 36px;
-            height: 36px;
-            background: #fef2f2;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #ef4444;
-            cursor: pointer;
-        }
-
-        /* Pagination */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            padding-bottom: 20px;
-            font-size: 13px;
-            color: #9ca3af;
-        }
-        
-        .page-link { color: #6b7280; cursor: pointer; font-weight: 500; }
-
-        /* FAB */
-        .fab {
-            position: fixed;
-            bottom: 85px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background: var(--primary-green);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 18px;
-            box-shadow: 0 4px 15px rgba(0, 200, 150, 0.4);
-            z-index: 90;
-        }
-
-        /* Bottom Nav */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background: white;
-            display: flex;
-            justify-content: space-around;
-            align-items: flex-end;
-            padding: 10px 0 15px;
-            border-top: 1px solid #f3f4f6;
-            z-index: 100;
-        }
-
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            color: #9ca3af;
-            font-size: 10px;
-            text-decoration: none;
-            width: 20%;
-        }
-
-        .nav-item i { font-size: 20px; margin-bottom: 2px; }
-        .nav-item.active { color: var(--primary-green); }
-
-        .nav-wallet {
-            position: relative;
-            top: -20px;
-            background: var(--primary-green);
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            box-shadow: 0 5px 15px rgba(0, 200, 150, 0.3);
-            font-size: 22px;
-        }
-        
-        .nav-wallet-label {
-            margin-top: 5px;
-            color: var(--text-gray);
-            font-size: 10px;
-        }
-
+        body { font-family: 'Inter', sans-serif; background-color: #f8f9fa; }
+        .wa-green { color: #25D366; }
+        .bg-wa-green { background-color: #25D366; }
+        .card-shadow { box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
     </style>
 </head>
-<body>
+<body class="p-4">
 
-    <!-- Header -->
-    <div class="top-header">
-        <div class="brand">
-            <i class="fab fa-whatsapp" style="color:var(--primary-green);"></i> 
-            LokerWA <small>Panel</small>
-        </div>
-        <a href="#" class="logout-link">
-            <i class="fas fa-sign-out-alt"></i> Logout
-        </a>
-    </div>
-
-    <!-- Stats -->
-    <div class="stats-grid">
-        <div class="stat-card">
-            <div class="stat-title green">TOTAL <i class="fas fa-desktop" style="margin-left:4px;"></i></div>
-            <div class="stat-count">1</div>
-            <i class="fas fa-desktop stat-icon green"></i>
-        </div>
-        <div class="stat-card">
-            <div class="stat-title green">ONLINE <i class="fas fa-wifi" style="margin-left:4px;"></i></div>
-            <div class="stat-count">1</div>
-            <i class="fas fa-wifi stat-icon green"></i>
-        </div>
-        <div class="stat-card">
-            <div class="stat-title red">OFFLINE <i class="fas fa-wifi" style="margin-left:4px; transform:rotate(45deg);"></i></div>
-            <div class="stat-count">0</div>
-            <i class="fas fa-wifi stat-icon red" style="transform:rotate(45deg);"></i>
-        </div>
-    </div>
-
-    <!-- Buttons -->
-    <div class="action-row">
-        <button class="btn-scan">
-            <i class="fas fa-qrcode"></i> Scan QR
-        </button>
-        <button class="btn-pair">
-            <i class="fas fa-link"></i> Pairing Code
-        </button>
-    </div>
-
-    <!-- Search -->
-    <div class="search-wrap">
-        <div class="search-box">
-            <i class="fas fa-search" style="color:#9ca3af;"></i>
-            <input type="text" placeholder="Cari Device ID / nomor WhatsApp...">
-        </div>
-    </div>
-
-    <!-- Filters -->
-    <div class="filters">
-        <div class="pill active">Semua</div>
-        <div class="pill">Online</div>
-        <div class="pill">Offline</div>
-    </div>
-
-    <!-- Device Card -->
-    <div class="device-card">
-        <div class="card-top">
+    <div class="bg-white p-4 flex justify-between items-center border-b card-shadow mb-4 rounded-lg">
+        <div class="flex items-center space-x-3">
+            <img src="LINK_FOTO_LU_DISINI" alt="Logo" class="w-10 h-10 rounded-md bg-black">
             <div>
-                <div class="device-label">DEVICE</div>
-                <div class="device-name">dev_dadc817</div>
-            </div>
-            <div class="status-badge">
-                <div class="status-dot"></div> CONNECTED
+                <h1 class="font-bold text-sm">SLT SETOR WA</h1>
+                <p class="text-xs text-gray-500">WhatsApp Manager</p>
             </div>
         </div>
+        <button class="bg-red-500 text-white p-2 rounded-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clip-rule="evenodd" />
+            </svg>
+        </button>
+    </div>
 
-        <div class="wa-number">No. WA +6281248411700</div>
-
-        <div class="card-stats">
-            <div class="stat-item">
-                <i class="far fa-paper-plane"></i>
-                Sent: <b>3</b>
-            </div>
-            <div class="stat-item stat-delivered">
-                <i class="fas fa-check-circle"></i>
-                Delivered: 3
-            </div>
-            <div class="stat-item stat-profit">
-                <i class="fas fa-coins"></i>
-                Profit: 1950
-            </div>
+    <div class="flex bg-white rounded-lg mb-4 card-shadow overflow-hidden">
+        <div class="w-1/3 p-3 text-center text-gray-500 text-sm font-semibold flex items-center justify-center border-b-4 border-transparent">
+            🏠 Dashboard
         </div>
-
-        <div class="card-footer">
-            <div class="mode-info">
-                <div class="mode-label">MODE</div>
-                <div class="mode-val">SLOW (20s)</div>
-            </div>
-            <div class="btn-logout-dev">
-                <i class="fas fa-sign-out-alt"></i>
-            </div>
+        <div class="w-1/3 p-3 text-center wa-green text-sm font-semibold flex items-center justify-center border-b-4 border-green-500 bg-green-50">
+            💬 WhatsApp
+        </div>
+        <div class="w-1/3 p-3 text-center text-gray-500 text-sm font-semibold flex items-center justify-center border-b-4 border-transparent">
+            👥 Referral
         </div>
     </div>
 
-    <!-- Pagination -->
-    <div class="pagination">
-        <div class="page-link"><i class="fas fa-chevron-left"></i> Prev</div>
-        <span>Page 1/1 (1 devices)</span>
-        <div class="page-link">Next <i class="fas fa-chevron-right"></i></div>
-    </div>
-
-    <!-- FAB -->
-    <div class="fab">
-        <i class="fas fa-paper-plane"></i>
-    </div>
-
-    <!-- Bottom Nav -->
-    <div class="bottom-nav">
-        <a href="#" class="nav-item">
-            <i class="fas fa-home"></i>
-            Dashboard
-        </a>
-        <a href="#" class="nav-item active">
-            <i class="fas fa-mobile-alt"></i>
-            Devices
-        </a>
-        
-        <!-- Wallet Floating -->
-        <a href="#" class="nav-wallet">
-            <i class="fas fa-wallet"></i>
-        </a>
-        <div style="display:flex; flex-direction:column; align-items:center;">
-             <span class="nav-wallet-label">Wallets</span>
+    <div class="bg-white p-6 rounded-2xl card-shadow mb-4 relative">
+        <p class="text-gray-600 text-sm mb-4">Status WhatsApp</p>
+        <h2 class="text-2xl font-bold text-green-600 mb-1">Online</h2>
+        <p class="text-sm text-gray-400">1 Aktif</p>
+        <div class="absolute top-6 right-6 bg-green-100 text-green-600 p-1 rounded-full">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
         </div>
-        
-        <!-- Adjusted for layout balance -->
-        <a href="#" class="nav-item">
-            <i class="fas fa-users"></i>
-            Referrals
-        </a>
-        <a href="#" class="nav-item">
-            <i class="fas fa-user-cog"></i>
-            Profile
-        </a>
+    </div>
+
+    <div class="bg-white p-6 rounded-2xl card-shadow mb-4 relative">
+        <p class="text-gray-600 text-sm mb-4">Total Pesan</p>
+        <h2 class="text-3xl font-bold text-gray-800 mb-1">54</h2>
+        <p class="text-sm text-gray-400">Pesan terkirim</p>
+        <div class="absolute top-6 right-6 bg-yellow-100 text-yellow-600 p-2 rounded-xl">
+            🚀
+        </div>
+    </div>
+
+    <div class="bg-white p-6 rounded-2xl card-shadow">
+        <div class="flex items-center space-x-3 mb-6">
+            <div class="bg-purple-100 p-2 rounded-lg text-purple-600">
+                ⚙️
+            </div>
+            <div>
+                <h3 class="font-bold">Kontrol Panel</h3>
+                <p class="text-xs text-gray-400">Kelola pengiriman pesan</p>
+            </div>
+        </div>
+
+        <label class="text-sm text-gray-600 mb-2 block">Kecepatan Blast</label>
+        <select class="w-full p-3 bg-gray-50 border rounded-xl mb-6 outline-none">
+            <option>🚀 FAST</option>
+        </select>
+
+        <p class="text-sm text-gray-600 mb-2">Aksi Cepat</p>
+        <button class="w-full bg-orange-400 text-white py-4 rounded-xl font-bold flex items-center justify-center space-x-2">
+            <span>✈️</span>
+            <span>Blast All</span>
+        </button>
     </div>
 
 </body>
