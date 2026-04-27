@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>LokerWA Clone</title>
+<style>
+body{font-family:Arial;background:#f3f4f6;padding:15px}
+.card{background:#fff;border-radius:15px;padding:15px;margin-top:10px;box-shadow:0 2px 5px rgba(0,0,0,0.1)}
+.row{display:flex;justify-content:space-between}
+.green{color:green}
+button{padding:8px;margin-top:5px}
+</style>
+</head>
+<body>
+
+<h2>Devices</h2>
+
+<input id="no" placeholder="Nomor WA">
+<select id="mode">
+<option value="0-0">OFF</option>
+<option value="60000-1">1 CHAT / 1 MENIT</option>
+<option value="20000-1">SLOW (20s)</option>
+<option value="10000-1">NORMAL (10s)</option>
+<option value="5000-1">FAST (5s)</option>
+<option value="1000-1">1 CHAT / 1 DETIK</option>
+<option value="1000-30">30 CHAT (FAST)</option>
+<option value="1000-40">40 CHAT (FAST)</option>
+<option value="1000-50">50 CHAT (FAST)</option>
+</select>
+<button onclick="pair()">Pairing Code</button>
+
+<div id="list"></div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
